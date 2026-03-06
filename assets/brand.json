@@ -1,0 +1,23 @@
+{
+  "company_name": "Hacker's Unity",
+  "colors": {
+    "background_dark": "#0D1117",
+    "background_card": "#161B22",
+    "primary_cyan": "#38B6FF",
+    "secondary_orange": "#FF914D",
+    "accent_green": "#22C55E",
+    "accent_green_dark": "#16A34A",
+    "cream": "#EDD9A3",
+    "text_primary": "#E6EDF3",
+    "text_muted": "#8B949E",
+    "border": "#30363D",
+    "danger_red": "#F85149",
+    "warning_yellow": "#F0A937",
+    "white": "#FFFFFF"
+  },
+  "fonts": {
+    "heading": "Poppins",
+    "body": "Inter"
+  },
+  "logo_path": "assets/logo.png"
+}

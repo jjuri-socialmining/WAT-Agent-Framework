@@ -1,0 +1,24 @@
+{
+  "name": "Hacker's Unity",
+  "industry": "Hackathons & Tech Education",
+  "products": [
+    "Blockchain courses",
+    "AI/Machine Learning courses",
+    "Cybersecurity courses",
+    "Hackathon hosting & organization"
+  ],
+  "target_audience": "Developers, students, tech enthusiasts, and aspiring hackers",
+  "description": "Hacker's Unity is a platform that hosts hackathons and sells online courses in blockchain, AI, and cybersecurity. It serves the tech community by bridging education with hands-on competitive experiences.",
+  "known_competitors": [
+    "HackWithIndia",
+    "Hack2Skill",
+    "MLH (Major League Hacking)"
+  ],
+  "website": "",
+  "social_media": {},
+  "key_differentiators": [
+    "Community-first hackathon platform",
+    "Courses paired with practical hackathon experience",
+    "Focus on emerging tech: blockchain, AI, cybersecurity"
+  ]
+}

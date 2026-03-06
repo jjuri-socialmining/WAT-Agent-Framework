@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ business.name }} - Competitor Analysis</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            /* Branding colors injected dynamically via Jinja */
+            --bg-dark: {{ brand.colors.background_dark }};
+            --bg-card: {{ brand.colors.background_card }};
+            --primary: {{ brand.colors.primary_cyan }};
+            --secondary: {{ brand.colors.secondary_orange }};
+            --accent: {{ brand.colors.accent_green }};
+            --text-main: {{ brand.colors.text_primary }};
+            --text-muted: {{ brand.colors.text_muted }};
+            --border: {{ brand.colors.border }};
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            color: var(--primary);
+            font-size: 32px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            page-break-inside: avoid;
+        }
+
+        .card-title {
+            color: var(--secondary);
+            margin-top: 0;
+            font-size: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .section-heading {
+            color: var(--accent);
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .threat-High { color: {{ brand.colors.danger_red }}; font-weight: bold; }
+        .threat-Medium { color: {{ brand.colors.warning_yellow }}; font-weight: bold; }
+        .threat-Low { color: {{ brand.colors.accent_green }}; font-weight: bold; }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <!-- The logo path must be absolute when WeasyPrint renders it -->
+        <img src="{{ logo_abs_path }}" alt="{{ business.name }} Logo" class="logo">
+        <h1 class="title">Competitor Analysis Report</h1>
+        <div class="subtitle">Prepared for {{ business.name }}</div>
+        <div class="subtitle">Generated on {{ date }}</div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Executive Summary</h2>
+        <p>{{ analysis.market_summary }}</p>
+
+        <h3 class="section-heading" style="margin-top: 30px;">Opportunities for {{ business.name }}</h3>
+        <ul>
+            {% for opp in analysis.my_business_opportunities %}
+            <li>{{ opp }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h1 style="text-align: center; color: var(--primary); margin: 50px 0 30px;">Competitor Breakdown</h1>
+
+    {% for comp in analysis.competitors %}
+    <div class="card">
+        <h2 class="card-title">{{ comp.name }}</h2>
+        <p><strong>Summary:</strong> {{ comp.summary }}</p>
+        <p><strong>Threat Level:</strong> <span class="threat-{{ comp.threat_level }}">{{ comp.threat_level }}</span></p>
+        <p><strong>Pricing Strategy:</strong> {{ comp.pricing_strategy }}</p>
+
+        <h3 class="section-heading">Strengths</h3>
+        <ul>
+            {% for s in comp.strengths %}
+            <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="section-heading">Weaknesses</h3>
+        <ul>
+            {% for w in comp.weaknesses %}
+            <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="section-heading">Key Features</h3>
+        <ul>
+            {% for f in comp.key_features %}
+            <li>{{ f }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3 class="section-heading" style="color: var(--secondary);">How to Beat Them</h3>
+        <ul>
+            {% for idea in comp.ideas_to_beat_them %}
+            <li>{{ idea }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+
+    <div class="footer">
+        Confidential & Proprietary • {{ business.name }}
+    </div>
+</div>
+
+</body>
+</html>
